@@ -6,10 +6,17 @@
 var cal = (function(my) {
 	var _private = 	{
 		Add: function(numbers) {
-			var result;
+			var result = 0, arrayTemp;
 			/*Case 1: string is empty*/
 			if (numbers.length <= 0) {
 				result = 0;
+				return result;
+			}
+
+			arrayTemp = numbers.split(',').map(Number);
+
+			for (var i in arrayTemp) {
+				result += arrayTemp[i];
 			}
 
 			return result;
