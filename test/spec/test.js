@@ -17,5 +17,11 @@
 		});
 	});
 
+	describe('String Calculator', function () {
+		it('Test case 3: Pass a string "1,2"', function () {
+			assert.equal(cal.Add('1,2'), 3, 'Expect return 3');
+		});
+	});
+
 
 })();
