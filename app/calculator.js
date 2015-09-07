@@ -23,6 +23,7 @@ var cal = (function(my) {
 			}
 
 			/*Test Case 2: string is has value 1*/
+			/*Test Case 3: string is has value 1,2*/
 			result = _private.commasArray(numbers);
 
 			return result;
