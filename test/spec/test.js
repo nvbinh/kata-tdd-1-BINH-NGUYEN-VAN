@@ -29,5 +29,11 @@
 		});
 	});
 
+	describe('String Calculator', function () {
+		it('Test case 5: Support different delimiters: "//;\n1;2"', function () {
+			assert.equal(cal.Add('//;\n1;2'), 3, 'Expect return 3');
+		});
+	});
+
 
 })();
