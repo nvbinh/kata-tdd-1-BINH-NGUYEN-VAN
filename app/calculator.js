@@ -10,7 +10,7 @@ var cal = (function(my) {
 	/*Instance store a reference to the Singleton*/
 	var instance;
 	var _private = 	{
-		separators: [' ', '-', '\n', ';', ','],
+		separators: [' ', '\n', ';', ','],
 
 		hasMultiDelimiter: function(numbers) {
 			return (numbers.substring(0, 2) === '//') ? numbers.substring(2, numbers.length) : numbers;
@@ -21,6 +21,9 @@ var cal = (function(my) {
 				arrayTemp = numbers.split(new RegExp(_private.separators.join('|'), 'g')).map(Number);
 
 			for (var i in arrayTemp) {
+				if (arrayTemp[i] < 0) {
+					return -1;
+				}
 				result += arrayTemp[i];
 			}
 			return result;
@@ -38,6 +41,11 @@ var cal = (function(my) {
 			/*Test Case 2: string is has value 1*/
 			/*Test Case 3: string is has value 1,2*/
 			result = _private.getArrayByDelimiters(numbers);
+
+			/*Test Case 6: Throw exception*/
+			if (result < 0) {
+				return function() { throw new Error('negatives not allowed'); };
+			}
 
 			return result;
 		}
