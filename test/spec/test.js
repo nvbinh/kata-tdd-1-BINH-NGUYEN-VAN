@@ -36,5 +36,11 @@
 		});
 	});
 
+	describe('String Calculator', function () {
+		it('Test case 6: Calling Add with a negative, throw an exception "negatives not allowed"', function () {
+			expect(myCal.Add('1,-2')).to.throw('negatives not allowed');
+		});
+	});
+
 
 })();
