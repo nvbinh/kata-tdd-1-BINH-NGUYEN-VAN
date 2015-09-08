@@ -1,21 +1,22 @@
 'use strict';
 
 /*
-* Module Pattern Calculator
+* Pattern: Module Pattern Calculator
+* Description: This pattern is used to imitate classes and focused on public and private access to methods &
+* variables. This module pattern helps improving the reduction of globally scoped variables, 
+* thus decreasing the chances of collision with other code in the application
 */
 var cal = (function(my) {
+	/*Instance store a reference to the Singleton*/
+	var instance;
 	var _private = 	{
 		separators: [' ', '-', '\n', ';', ','],
 
 		hasMultiDelimiter: function(numbers) {
-			var pattern = numbers.substring(0, 2);
-			if (pattern === '//') {
-				return true;
-			}
-			return false;
+			return (numbers.substring(0, 2) === '//') ? numbers.substring(2, numbers.length) : numbers;
 		},
 		
-		commasArray: function(numbers) {
+		getArrayByDelimiters: function(numbers) {
 			var result = 0,
 				arrayTemp = numbers.split(new RegExp(_private.separators.join('|'), 'g')).map(Number);
 
@@ -26,27 +27,41 @@ var cal = (function(my) {
 		},
 
 		Add: function(numbers) {
-			var result = 0, multi;
+			var result = 0;
 			/*Test Case 1: string is empty*/
 			if (numbers.length <= 0) {
 				return 0;
 			}
 
-			multi = _private.hasMultiDelimiter(numbers);
-			if (multi) {
-				numbers = numbers.substring(2, numbers.length);
-			}
+			numbers = _private.hasMultiDelimiter(numbers);
+			
 			/*Test Case 2: string is has value 1*/
 			/*Test Case 3: string is has value 1,2*/
-			result = _private.commasArray(numbers);
+			result = _private.getArrayByDelimiters(numbers);
 
 			return result;
 		}
 	};
 
-	/*Public Methods*/
+	/*
+	* Pattern: Revealing Module Pattern
+	* Description: Reveal public pointers to private functions and properties
+	*/
 	my.Add = _private.Add;
 
-	return my;
+	return {
+		/*
+		* Pattern: Singleton Pattern
+		* Description: This pattern restricts instantiation of a class to a single object.
+		* But in Javascript, Singletons provide a single point of access for functions
+		*/
+		getInstance: function() {
+			if (!instance) {
+				instance = my;
+			}
+
+			return instance;
+		}
+	};
 
 }(cal || {}));
