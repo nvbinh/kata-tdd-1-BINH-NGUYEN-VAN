@@ -23,5 +23,11 @@
 		});
 	});
 
+	describe('String Calculator', function () {
+		it('Test case 4: Support new lines: "1\n2,3"', function () {
+			assert.equal(cal.Add('1\n2,3'), 6, 'Expect return 6');
+		});
+	});
+
 
 })();
