@@ -5,9 +5,11 @@
 */
 var cal = (function(my) {
 	var _private = 	{
+		separators: [' ', '-', '\n', ';', ','],
+		
 		commasArray: function(numbers) {
 			var result = 0,
-				arrayTemp = numbers.split(',').map(Number);
+				arrayTemp = numbers.split(new RegExp(_private.separators.join('|'), 'g')).map(Number);
 
 			for (var i in arrayTemp) {
 				result += arrayTemp[i];
