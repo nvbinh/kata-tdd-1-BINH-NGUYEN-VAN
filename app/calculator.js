@@ -17,8 +17,12 @@ var cal = (function(my) {
 	var _private = 	{
 		separators: [' ', '\n', ';', ',', '%'],
 
+		replaceString: function(numbers) {
+			return numbers.substring(2, numbers.length).replaceAll('***', ',').replaceAll('*', ',').replaceAll('@@', ',');
+		},
+
 		hasMultiDelimiter: function(numbers) {
-			return (numbers.substring(0, 2) === '//') ? numbers.substring(2, numbers.length).replaceAll('***', ',').replaceAll('*', ',').replaceAll('@@', ',') : numbers;
+			return (numbers.substring(0, 2) === '//') ? _private.replaceString(numbers) : numbers;
 		},
 		
 		getArrayByDelimiters: function(numbers) {
