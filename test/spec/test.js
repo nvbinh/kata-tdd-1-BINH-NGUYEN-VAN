@@ -60,4 +60,10 @@
 		});
 	});
 
+	describe('String Calculator', function () {
+		it('Test case 10: Allow multiple delimiters with length longer than one char. EX: "//[***][@@]\n1***2@@3', function () {
+			assert.equal(myCal.Add('//[***][@@]\n1***2@@3'), 6, 'Expect return 6');
+		});
+	});
+
 })();
