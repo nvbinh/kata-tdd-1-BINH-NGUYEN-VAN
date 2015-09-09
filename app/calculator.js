@@ -15,10 +15,10 @@ var cal = (function(my) {
 	/*Instance store a reference to the Singleton*/
 	var instance;
 	var _private = 	{
-		separators: [' ', '\n', ';', ','],
+		separators: [' ', '\n', ';', ',', '%'],
 
 		hasMultiDelimiter: function(numbers) {
-			return (numbers.substring(0, 2) === '//') ? numbers.substring(2, numbers.length).replaceAll('***', ',') : numbers;
+			return (numbers.substring(0, 2) === '//') ? numbers.substring(2, numbers.length).replaceAll('***', ',').replaceAll('*', ',') : numbers;
 		},
 		
 		getArrayByDelimiters: function(numbers) {
