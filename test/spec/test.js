@@ -42,5 +42,11 @@
 		});
 	});
 
+	describe('String Calculator', function () {
+		it('Test case 7: Ignore the numbers bigger than 1000', function () {
+			assert.equal(myCal.Add('2, 1001'), 2, 'Expect return 2');
+		});
+	});
+
 
 })();
