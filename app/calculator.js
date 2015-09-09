@@ -6,6 +6,11 @@
 * variables. This module pattern helps improving the reduction of globally scoped variables, 
 * thus decreasing the chances of collision with other code in the application
 */
+
+String.prototype.replaceAll = function(target, replacement) {
+  return this.split(target).join(replacement);
+};
+
 var cal = (function(my) {
 	/*Instance store a reference to the Singleton*/
 	var instance;
@@ -13,7 +18,7 @@ var cal = (function(my) {
 		separators: [' ', '\n', ';', ','],
 
 		hasMultiDelimiter: function(numbers) {
-			return (numbers.substring(0, 2) === '//') ? numbers.substring(2, numbers.length) : numbers;
+			return (numbers.substring(0, 2) === '//') ? numbers.substring(2, numbers.length).replaceAll('***', ',') : numbers;
 		},
 		
 		getArrayByDelimiters: function(numbers) {
