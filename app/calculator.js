@@ -11,7 +11,7 @@ String.prototype.replaceAll = function(target, replacement) {
   return this.split(target).join(replacement);
 };
 
-var cal = (function(my) {
+var cal = (function() {
 	/*Instance store a reference to the Singleton*/
 	var instance;
 	var _private = 	{
@@ -64,11 +64,15 @@ var cal = (function(my) {
 		}
 	};
 
-	/*
-	* Pattern: Revealing Module Pattern
-	* Description: Reveal public pointers to private functions and properties
-	*/
-	my.Add = _private.Add;
+	function Cal() {
+		return {
+			/*
+			* Pattern: Revealing Module Pattern
+			* Description: Reveal public pointers to private functions and properties
+			*/
+			Add: _private.Add
+		};
+	}
 
 	return {
 		/*
@@ -78,9 +82,8 @@ var cal = (function(my) {
 		*/
 		getInstance: function() {
 			if (!instance) {
-				instance = my;
+				instance = new Cal();
 			}
-
 			return instance;
 		}
 	};
