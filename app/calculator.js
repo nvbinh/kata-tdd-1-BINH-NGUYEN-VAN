@@ -18,13 +18,17 @@ var cal = (function(my) {
 		
 		getArrayByDelimiters: function(numbers) {
 			var result = 0,
+				number,
 				arrayTemp = numbers.split(new RegExp(_private.separators.join('|'), 'g')).map(Number);
 
 			for (var i in arrayTemp) {
-				if (arrayTemp[i] < 0) {
+				number = arrayTemp[i];
+				if (number < 0) {
 					return -1;
 				}
-				result += arrayTemp[i];
+				if (number <= 1000) {
+					result += arrayTemp[i];
+				}
 			}
 			return result;
 		},
