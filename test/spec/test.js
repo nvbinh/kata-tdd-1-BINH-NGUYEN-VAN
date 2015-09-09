@@ -54,5 +54,10 @@
 		});
 	});
 
+	describe('String Calculator', function () {
+		it('Test case 9: Allow multiple delimiters. EX: "//[*][%]\n1*2%3', function () {
+			assert.equal(myCal.Add('//[*][%]\n1*2%3'), 6, 'Expect return 6');
+		});
+	});
 
 })();
